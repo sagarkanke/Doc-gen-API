@@ -14,11 +14,13 @@ const generatePDF = async (req: any) => {
                 resolve({ fields: fields, files: files });
             })
         }));
-
+        // if( !Object.keys(files).length) {
+        //     throw new Error("No file uploaded.");
+        // }
         // Ensure that a file was uploaded
         //@ts-ignore
         if (!files.file || files.file.length === 0) {
-            throw new Error("No file uploaded.");
+            throw new Error(" file is missing.");
         }
 
         //@ts-ignore
@@ -36,16 +38,16 @@ const generatePDF = async (req: any) => {
         // Generate a PDF using the HTML content
         const pdf = await generate([{}], html, uuidv4());
       
-        try {
-            await fs.promises.unlink(newPath);
-        } catch {
-            LOGGER.info('There was an error deleting the file.');
-        }
+        // try {
+        //     await fs.promises.unlink(newPath);
+        // } catch {
+        //     LOGGER.info('There was an error deleting the file.');
+        // }
         // Return the URL of the uploaded PDF
         return pdf.filename
     } catch (err: any) {
         // Handle errors and return an error message if necessary
-        return err.message || "An error occurred.";
+        throw new Error( err.message || "An error occurred.");
     }
 };
 
