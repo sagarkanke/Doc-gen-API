@@ -42,5 +42,4 @@ const generatePDF = async (req: any) => {
 
 export default {
     generatePDF
-
 }
