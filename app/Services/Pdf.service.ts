@@ -29,7 +29,6 @@ const generatePDF = async (req: any) => {
 
         // Generate a PDF using the HTML content
         const pdfBuffer = await generate( html, uuidv4());
-        // const pdfBuffer = await generatePDFFromHTML(html)
         
         // Return buffered file
         return pdfBuffer;
