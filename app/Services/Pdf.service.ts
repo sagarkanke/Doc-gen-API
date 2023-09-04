@@ -1,4 +1,4 @@
-import { generate, generatePDFFromHTML } from '../utilities/PdfGenerator'
+import { generate } from '../utilities/PdfGenerator'
 import * as fs from "fs";
 import LOGGER from "../config/LOGGER";
 const formidable = require('formidable');
