@@ -3,7 +3,7 @@ var pdf = require("pdf-creator-node");
 export const generate = async (html: any, path: any) => {
   // var html = fs.readFileSync(__dirname + '/template.html', "utf8");
   const options = {
-    format: "A3",
+    format: "A4",
     orientation: "portrait",
     border: "10mm",
     header: {
