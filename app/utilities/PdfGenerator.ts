@@ -38,7 +38,7 @@ export const generate = async (html: any, path: any) => {
 
 export async function generatePDFFromHtml(htmlContent: string) {
   const browser = await puppeteer.launch({
-    headless: true, // Run in headless mode
+    headless: 'new', // Run in headless mode
     // other options...
   });
   const page = await browser.newPage();
