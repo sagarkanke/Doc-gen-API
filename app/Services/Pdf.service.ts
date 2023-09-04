@@ -1,4 +1,4 @@
-import { generate } from '../utilities/PdfGenerator'
+import { generate, generatePDFFromHtml } from '../utilities/PdfGenerator'
 import * as fs from "fs";
 import LOGGER from "../config/LOGGER";
 const formidable = require('formidable');
@@ -28,7 +28,8 @@ const generatePDF = async (req: any) => {
         const html = await fs.promises.readFile(uploadedFile.filepath, "utf8");
 
         // Generate a PDF using the HTML content
-        const pdfBuffer = await generate( html, uuidv4());
+        // const pdfBuffer = await generate( html, uuidv4());
+        const pdfBuffer = await generatePDFFromHtml(html);
         
         // Return buffered file
         return pdfBuffer;

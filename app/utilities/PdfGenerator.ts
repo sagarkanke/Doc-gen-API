@@ -1,4 +1,5 @@
 var pdf = require("pdf-creator-node");
+const puppeteer = require('puppeteer');
 // const jsPDF = require('jspdf');
 export const generate = async (html: any, path: any) => {
   // var html = fs.readFileSync(__dirname + '/template.html', "utf8");
@@ -35,3 +36,27 @@ export const generate = async (html: any, path: any) => {
 }
 
 
+export async function generatePDFFromHtml(htmlContent: string) {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  // Set custom viewport size (optional)
+  await page.setViewport({ width: 1200, height: 800 });
+
+  // Emulate media type for better rendering (optional)
+  await page.emulateMediaType('print');
+
+  await page.setContent(htmlContent);
+
+  const pdfBuffer = await page.pdf({
+    format: 'A4',
+    printBackground: true, // Include background colors and images
+    margin: {
+      top: '15px',
+      right: '15px',
+      bottom: '15px',
+      left: '15px'
+    }
+  });
+  return pdfBuffer
+
+}
