@@ -56,4 +56,5 @@ npm-debug.log
 combined.log
 error.log
 .bin
+bin/
 
