@@ -1,4 +1,4 @@
-# <p align="center">Document Generation Server</p>
+# <p align="center">Document Generation API</p>
 
 ## Introduction
 
@@ -58,73 +58,15 @@ Request body:
 ### Example Using cURL
 
 ```shell
-curl -X POST -F "htmlFile=@yourfile.html" http://13.233.98.232/doc/gen/api/internal/pdf/generate
+curl --location 'https://manage.ximkart.com/doc/gen/api/internal/pdf/generate' \
+--header 'Authorization: Basic eGlta2FydDp4aW1rYXJ0MTIzIw==' \
+--form 'file=@"yourFile.html"'
 ```
 
 
 # Response body
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Example PDF</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #555;
-        }
-    </style>
-</head>
-<body>
-    <h1>Hello, this is an example PDF</h1>
-    <p>This is some sample content in HTML format.</p>
-</body>
-</html>
-```
 
-
-
-```json
-{
-    "messageId": "1234cc",
-    "channelId": "64c24cb48c5095e20c87200b",
-    "senderId": "101",
-    "new": "s",
-    "so": 1231,
-    "receiverId": "102",
-    "accountId": "7890",
-    "conversationId": "abc123",
-    "channelType": "email",
-    "contactId": "64c500f9ea3a97d664e3c002",
-    "localMessageId": "lmn456",
-    "whatsapp": {
-        "from": "918637212489",
-        "id": "wamid.HBgMOTE4NjM3MjEyNDg5FQIAEhggRkQ5OTFCNzVDNjc3QUY0Mzc4RjIxOTZCOUM5NEVFNTAA",
-        "retryable": false,
-        "status": "received",
-        "statusGroup": "pending",
-        "statusLog": [],
-        "statusTime": "2023-08-09T13:59:24.000Z",
-        "text": {
-            "body": "Hi sagar"
-        },
-        "time": "2023-08-10T13:59:24.000Z",
-        "type": "text"
-    }
-   
-}
-```
+![HTML Code Screenshot](screenshots/samplePDF.png)
 
 ## Contributing
 Contributions are welcome! Here's how you can contribute to this project:
