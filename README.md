@@ -1,4 +1,4 @@
-# <p align="center">Document Generation API</p>
+# Document Generation API
 
 ## Introduction
 
