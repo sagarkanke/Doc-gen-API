@@ -60,6 +60,12 @@ export async function generatePDFFromHtml(htmlContent: string) {
       left: '15px'
     }
   });
+  // Close the page
+  await page.close();
+
+  // Close the browser
+  await browser.close();
+  
   return pdfBuffer
 
 }
