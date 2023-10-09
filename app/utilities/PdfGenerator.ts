@@ -1,5 +1,6 @@
 var pdf = require("pdf-creator-node");
 const puppeteer = require('puppeteer');
+
 // const jsPDF = require('jspdf');
 export const generate = async (html: any, path: any) => {
   // var html = fs.readFileSync(__dirname + '/template.html', "utf8");
@@ -69,3 +70,4 @@ export async function generatePDFFromHtml(htmlContent: string) {
   return pdfBuffer
 
 }
+

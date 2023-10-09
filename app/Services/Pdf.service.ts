@@ -1,9 +1,10 @@
 import { generate, generatePDFFromHtml } from '../utilities/PdfGenerator'
 import * as fs from "fs";
-import LOGGER from "../config/LOGGER";
+
 const formidable = require('formidable');
 const { v4: uuidv4 } = require('uuid');
-
+const browserPool = require('../utilities/browserPool');
+import { connectionManager } from '../app'
 const generatePDF = async (req: any) => {
     try {
         // Parse the incoming form data using formidable
@@ -14,7 +15,7 @@ const generatePDF = async (req: any) => {
                 resolve({ fields: fields, files: files });
             })
         }));
-      
+
         //@ts-ignore
         if (!files.file || files.file.length === 0) {
             throw new Error(" file is missing.");
@@ -27,16 +28,39 @@ const generatePDF = async (req: any) => {
         const uploadedFile = files.file[0];
         const html = await fs.promises.readFile(uploadedFile.filepath, "utf8");
 
-        // Generate a PDF using the HTML content
-        // const pdfBuffer = await generate( html, uuidv4());
-        const pdfBuffer = await generatePDFFromHtml(html);
+       
+        const browser = await connectionManager.getBrowser()
+       
+          const page = await browser.newPage();
+          // Set custom viewport size (optional)
+          await page.setViewport({ width: 1200, height: 800 });
         
-        // Return buffered file
-        return pdfBuffer;
+          // Emulate media type for better rendering (optional)
+          await page.emulateMediaType('print');
+        
+          await page.setContent(html);
+        
+          const pdfBuffer = await page.pdf({
+            format: 'A4',
+            printBackground: true, // Include background colors and images
+            margin: {
+              top: '15px',
+              right: '15px',
+              bottom: '15px',
+              left: '15px'
+            }
+          });
+          // Close the page
+          await page.close();
+        
+          connectionManager.releaseBrowser(browser);
+
+          return pdfBuffer
+      
 
     } catch (err: any) {
         // Handle errors and return an error message if necessary
-        throw new Error( err.message || "An error occurred.");
+        throw new Error(err.message || "An error occurred.");
     }
 };
 
