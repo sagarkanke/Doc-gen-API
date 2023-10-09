@@ -9,7 +9,9 @@ import Authenticate from '../Middlewares/Authenticate';
 
 const app = express();
 const morgan = require('morgan');
-
+import { ConnectionManager } from "../utilities/browserPool";
+// const ConnectionManager = require('./utilities/browserPool'); // Adjust the path as needed
+export const connectionManager = new ConnectionManager();
 app.options('*', cors()) // include before other routes
 
 app.use(function(req, res, next) {
