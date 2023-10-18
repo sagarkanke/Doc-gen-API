@@ -1,6 +1,9 @@
 import * as fs from "fs";
+import { ConnectionManager } from "../utilities/browserPool";
+import connectionManager from "../app";
 const formidable = require('formidable');
-import { connectionManager } from '../app'
+// import { connectionManager } from '../app'
+// connectionManager
 const generatePDF = async (req: any) => {
     try {
         // Parse the incoming form data using formidable
@@ -17,8 +20,6 @@ const generatePDF = async (req: any) => {
             throw new Error(" file is missing.");
         }
 
-        //@ts-ignore
-        const uploadedFile = files.file[0];
 
         //@ts-ignore
         const uploadedFile = files.file[0];
