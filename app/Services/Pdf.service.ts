@@ -1,9 +1,5 @@
-import { generate, generatePDFFromHtml } from '../utilities/PdfGenerator'
 import * as fs from "fs";
-
 const formidable = require('formidable');
-const { v4: uuidv4 } = require('uuid');
-const browserPool = require('../utilities/browserPool');
 import { connectionManager } from '../app'
 const generatePDF = async (req: any) => {
     try {

@@ -16,10 +16,8 @@ export class ConnectionManager {
   }
 
   public async getBrowser(): Promise<Browser> {
-    console.log( " availableBrowswers : ", this.availableBrowsers )
+    console.log( " this.availableBrowsers.length : ", this.availableBrowsers.length )
     if (this.availableBrowsers.length === 0) {
-      await this.createBrowser();
-      await this.createBrowser();
       await this.createBrowser();
     }
     return this.availableBrowsers.pop()!;

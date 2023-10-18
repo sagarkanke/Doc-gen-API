@@ -1,9 +1,6 @@
 import IController from '../Types/IController';
 import apiResponse from '../utilities/ApiResponse';
 import pdfService from '../Services/Pdf.service';
-import * as fs from "fs";
-
-
 
 const generatePDF: IController = async (req: any, res: any) => {
     let pdf: any;
