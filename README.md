@@ -22,7 +22,7 @@ Before you begin, ensure you have met the following requirements:
 1 Clone this repository
    
    ```bash
-   git clone git@bitbucket.org:ximkart/sl-doc-gen.git
+   git clone https://github.com/sagarkanake/BookGen-API.git
    ```
 
 2 Navigate to the project directory
