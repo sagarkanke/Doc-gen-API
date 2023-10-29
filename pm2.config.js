@@ -1,6 +1,6 @@
 module.exports = {
     apps : [{
-        name      : 'Document Gen Service',
+        name      : 'Book Gen Service',
         script    : './bin/app.js',
         node_args : '-r dotenv/config'
     }],

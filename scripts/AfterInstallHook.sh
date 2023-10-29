@@ -4,6 +4,6 @@ set -e
 npm install
 npm run build
 # Stop Pm2 Process
-pm2 stop 'Document Gen Service'
-echo "Document Gen Service is stopped "
+pm2 stop 'Book Gen Service'
+echo "Book Gen Service is stopped "
 

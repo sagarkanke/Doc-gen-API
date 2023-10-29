@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Running Hook: applicationstart.sh"
-cd /home/ec2-user/deployment/frontend/chat-server
+cd /home/ec2-user/deployment/frontend/book-server
 source /etc/profile
 # Start PM2
 pm2 start pm2.config.js 2>&1
