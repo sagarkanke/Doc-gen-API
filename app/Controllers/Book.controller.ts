@@ -110,9 +110,38 @@ const getBookById: IController = async (req: any, res: any) => {
     }
     return;
 }
+
+const deleteBookById: IController = async (req: any, res: any) => {
+    let book: any;
+    try {
+        // get book by id using the bookService
+        book = await bookService.deleteBookById(req);
+        console.log(book)
+        // Check if the result is an Error object
+        if (book instanceof Error) {
+            console.log(book)
+            // Return a bad request response using the apiResponse helper function
+            apiResponse.error(res, 400, book.message);
+        } else {
+            apiResponse.result(res, book , " book deleted successfully ", 200);
+
+        }
+    } catch (e: any) {
+
+        // Return a bad request response with the error message from the caught exception
+        apiResponse.error(
+            res,
+            400,
+            e.message
+        );
+    }
+    return;
+}
+
 export default {
     addBook,
     editBook,
     getAllBook,
-    getBookById
+    getBookById,
+    deleteBookById
 };

@@ -26,7 +26,13 @@ router.get(
 
 router.get(
     '/',
+    celebrate(bookSchema.id),
     bookController.getBookById,
 );
 
+router.delete(
+    '/delete',
+    celebrate(bookSchema.id),
+    bookController.deleteBookById,
+);
 export default router;

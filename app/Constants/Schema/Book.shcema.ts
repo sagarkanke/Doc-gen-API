@@ -19,5 +19,13 @@ export default {
         }
        
     },
+    id: {
+        [Segments.QUERY]:
+         {
+            id : Joi.string().required(),
+           
+        }
+       
+    },
     
 };
