@@ -5,12 +5,14 @@ export default class ApiResponse {
     static result = (
         res: Response,
         data: object,
+        message: string,
         status: number = 200,
     ) => {
         res.status(status);
         res.json({
             data,
             success: true,
+            message : message
         });
     };
 

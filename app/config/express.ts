@@ -6,9 +6,25 @@ import cors from 'cors';
 
 import * as bodyParser from 'body-parser';
 import Authenticate from '../Middlewares/Authenticate';
-
+const mongoose = require('mongoose');
 const app = express();
 const morgan = require('morgan');
+
+const uri = 'mongodb://localhost:27017/manageBooks';
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  
+ const db = mongoose.connection;
+  
+  db.on('error', (err:any) => {
+    console.error(`MongoDB connection error: ${err}`);
+  });
+  
+  db.once('open', () => {
+    console.log('Connected to MongoDB');
+  });
 // const ConnectionManager = require('./utilities/browserPool'); // Adjust the path as needed
 app.options('*', cors()) // include before other routes
 

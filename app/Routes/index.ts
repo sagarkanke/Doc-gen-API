@@ -1,8 +1,8 @@
 import  {Router} from 'express';
-import pdfRoute from './Pdf/Pdf.route';
+import bookRoute from './Book/Book.route'
 
 const router = Router();
 
-router.use('/internal/pdf', pdfRoute );
+router.use('/book',bookRoute );
 
 export default router;

@@ -1,4 +1,4 @@
-const base = '/doc/gen/api';
+const base = '/api';
 
 export default {
     url: {

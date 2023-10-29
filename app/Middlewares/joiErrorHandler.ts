@@ -23,11 +23,7 @@ export default (
         err.details.forEach((error1: ValidationError) =>
             error1.details.forEach((value) => details.push(value.message)),
         );
-        const error = {
-            details: details.join(','),
-            code: HttpStatus.BAD_REQUEST,
-            message: HttpStatus.getStatusText(HttpStatus.BAD_REQUEST),
-        };
+        const error = details.join(',').replace(/"/g, '').replace(/\\/g, '');
 
         return res.status(HttpStatus.BAD_REQUEST).json({
             message: error,

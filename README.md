@@ -1,13 +1,13 @@
-# Document Generation API
+# Book Management  API
 
 ## Introduction
 
-The Document Generation Server is a cutting-edge solution that seamlessly converts HTML content into PDF documents, harnessing the power of modern CSS features like flexbox and grid for dynamic layouts. Upon successful generation, it promptly delivers the resulting document in PDF format, streamlining the document creation process with precision and efficiency.
+The Book Management Api is a service where you can manage your books by adding new books, editing the existing the book , viewing the existing books or view a particular book 
 
 ## Features
-1. **HTML to PDF Conversion:** Seamlessly generates PDF documents from HTML content.
-2. **Modern CSS Support:** Utilizes contemporary CSS features like flexbox and grid for dynamic layouts.
-3. **Immediate PDF Delivery:** Provides the generated PDF file promptly upon successful document generation.
+1. **ADD:** Seamlessly generates new books from user request content.
+2. **Edit:** Gives edit functionality for your books.
+3. **All or One:** Provides the added all or one books in the response.
 
 
 ## Prerequisites
@@ -20,15 +20,15 @@ Before you begin, ensure you have met the following requirements:
 ## Getting Started
 
 1 Clone this repository
-
+   
    ```bash
-   cd DocGen-API 
+   git clone git@bitbucket.org:ximkart/sl-doc-gen.git
    ```
 
 2 Navigate to the project directory
  
   ```bash
-   git clone git@bitbucket.org:ximkart/sl-doc-gen.git
+   cd DocGen-API 
    ```
 
 3 Install dependencies
@@ -37,36 +37,176 @@ Before you begin, ensure you have met the following requirements:
    npm install
    ```
 
-
+4 Run the server
+  ```bash
+   npm run dev
+   ```
 ## Usage
 
 ## API Endpoints
-List and described DocGen-API server's endpoints here. For example:
+List and described BookGen-API server's endpoints here. For example:
 
-## Document Generation API Example
+## Book Generation API Example
 
-To generate PDF documents from HTML files using the `DocgGen-api` server, you can use the following HTTP request:
+To Add Book  from request data using the `BookGen-api` server, you can use the following HTTP request:
 
 - **HTTP Method**: POST
-- **Endpoint**: `/doc/gen/api/internal/pdf/generate`
-- **Content-Type**: multipart/form-data
+- **Endpoint**: `/api/book/add`
+- **Content-Type**: application/json
 
 Request body:
 
-- **htmlFile**: A multipart form field for uploading the HTML file. Include your HTML file in this field.
+- **json**: A json data fields for creating the new book recored. Include your data  in this request body.
 
 ### Example Using cURL
 
 ```shell
-curl --location 'https://manage.ximkart.com/doc/gen/api/internal/pdf/generate' \
---header 'Authorization: Basic eGlta2FydDp4aW1rYXJ0MTIzIw==' \
---form 'file=@"yourFile.html"'
+curl --location 'http://localhost:4001/api/book/add' \
+--data '{
+    "title": " node.js 2 ",
+    "author" : "sagar" 
+    
+}'
 ```
 
 
+# Response Body
+
+```json
+{
+    "data": {
+        "title": " node.js 2 ",
+        "author": "sagar",
+        "summary": "",
+        "_id": "653e44aad40f56ccb274222b",
+        "__v": 0
+    },
+    "success": true,
+    "message": " book created Successfully "
+}
+```
+
+To Edit Book  from request data using the `BookGen-api` server, you can use the following HTTP request:
+
+- **HTTP Method**: PUT
+- **Endpoint**: `/api/book/edit`
+- **Content-Type**: application/json
+
+Request body:
+
+- **json**: A json data fields for creating the new book recored. Include your data  in this request body.
+
+### Example Using cURL
+
+```shell
+curl --location 'http://localhost:4001/api/book/edit' \
+--data '{
+    "id" : "123",
+    "title": " node.js 2 ",
+    "author" : "sagar" 
+    
+}'
+```
+
+# Response Body
+
+```json
+{
+    "data": {
+        "_id": "653e3214b4b5c9ff88e8bf63",
+        "title": " node.js 223 ",
+        "author": "sagar",
+        "summary": " summary",
+        "__v": 0
+    },
+    "success": true,
+    "message": " book updated successfully "
+}
+```
+
+To view All Books  from request data using the `BookGen-api` server, you can use the following HTTP request:
+
+- **HTTP Method**: POST
+- **Endpoint**: `/api/book/all`
+- **Content-Type**: application/json
+
+
+### Example Using cURL
+
+```shell
+curl --location 'http://localhost:4001/api/book/all'
+```
+
+# Response Body
+
+```json
+{
+    "data": [
+        {
+            "_id": "653e3214b4b5c9ff88e8bf63",
+            "title": " node.js 223 ",
+            "author": "sagar",
+            "summary": " summary",
+            "__v": 0
+        },
+        {
+            "_id": "653e32f3f9095b27e9d75fa0",
+            "title": " Node.js 1.2 ",
+            "author": "john Doe",
+            "summary": " summary",
+            "__v": 0
+        },
+        {
+            "_id": "653e365d783d22ee5fb42843",
+            "title": " node.js 2 ",
+            "author": "sagar",
+            "summary": "",
+            "__v": 0
+        },
+        {
+            "_id": "653e3aed7e763cbb714b619e",
+            "title": " node.js 2 ",
+            "author": "sagar",
+            "summary": "",
+            "__v": 0
+        }
+    ],
+    "message": " book fetched Successfully ",
+    "success": true
+}
+```
+
+To get an Book  from book id  using the `BookGen-api` server, you can use the following HTTP request:
+
+- **HTTP Method**: POST
+- **Endpoint**: `/api/book`
+- **Content-Type**: application/json
+
+Request body:
+
+- **json**: A json data fields for creating the new book recored. Include your data  in this request body.
+
+### Example Using cURL
+
+```shell
+curl --location 'http://localhost:4001/api/book?id=653e3aed7e763cbb714b619e'
+```
+
 # Response body
 
-![HTML Code Screenshot](screenshots/samplePDF.png)
+```json
+{
+    "data": {
+        "_id": "653e3aed7e763cbb714b619e",
+        "title": " node.js 2 ",
+        "author": "sagar",
+        "summary": "",
+        "__v": 0
+    },
+    "message": " book fetched Successfully ",
+    "success": true
+}
+```
 
 ## Contributing
 Contributions are welcome! Here's how you can contribute to this project:
