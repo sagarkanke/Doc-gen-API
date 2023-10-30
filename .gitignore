@@ -51,7 +51,7 @@ node_modules
 build
 npm-debug.log
 .nyc
-.env
+# .env
 .DS_Store
 combined.log
 error.log
