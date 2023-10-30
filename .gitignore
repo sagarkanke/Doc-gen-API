@@ -55,6 +55,6 @@ npm-debug.log
 .DS_Store
 combined.log
 error.log
-.bin
+# .bin
 bin/
 
