@@ -1,5 +1,5 @@
 require('dotenv').config(); // Load environment variables from .env file
 
 // Rest of your application code goes here...
-const env = process.env;
+export const uri = process.env.MASTER_DB_URI;
   

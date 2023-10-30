@@ -6,11 +6,12 @@ import cors from 'cors';
 
 import * as bodyParser from 'body-parser';
 import Authenticate from '../Middlewares/Authenticate';
+import { uri } from '../config';
 const mongoose = require('mongoose');
 const app = express();
 const morgan = require('morgan');
 
-const uri = 'mongodb://localhost:27017/manageBooks';
+
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
