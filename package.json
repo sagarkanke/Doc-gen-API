@@ -2,7 +2,7 @@
   "name": "Book",
   "version": "1.0.0",
   "description": "",
-  "main": "app/app.js",
+  "main": "./app/app.js",
   "scripts": {
     "tsc": "tsc",
     "dev": "nodemon ./app/app.ts",
